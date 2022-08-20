@@ -1,4 +1,4 @@
-package io.github.jlmc.mongodbschemamsg.interfaces.dtos;
+package io.github.jlmc.mongodbschemamsg.interfaces.rest.dtos;
 
 import javax.validation.constraints.NotBlank;
 

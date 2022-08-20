@@ -1,7 +1,7 @@
-package io.github.jlmc.mongodbschemamsg.interfaces.transform;
+package io.github.jlmc.mongodbschemamsg.interfaces.rest.transform;
 
-import io.github.jlmc.mongodbschemamsg.api.domain.commands.AddPersonCommand;
-import io.github.jlmc.mongodbschemamsg.interfaces.dtos.AddPersonRequestResource;
+import io.github.jlmc.mongodbschemamsg.domain.commands.AddPersonCommand;
+import io.github.jlmc.mongodbschemamsg.interfaces.rest.dtos.AddPersonRequestResource;
 
 public class AddPersonCommandDTOAssembler {
 
