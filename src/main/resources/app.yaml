@@ -1,0 +1,84 @@
+
+api:
+  gw:
+    verifier:
+      url: http://localhost:3000
+      serviceName: industries-settings-api
+      authenticationEnabled: true
+    client:
+      url: http://localhost:9069
+
+encryption:
+  # RSA or NONE
+  type: RSA
+
+audit:
+  enabled: true
+  excluded-paths: /actuator/health/readiness,/actuator/health/liveness
+  rabbitmq:
+    url: amqp://localhost:5672
+    maxPoolSize: ${RABBITMQ_AUDIT_MAX_POOL_SIZE:10}
+  logger:
+    redactingRegex:
+      - (?i).*password.*
+      - (?i).*pwd.*
+      - (?i).*secret.*
+      - (?i).*private.*
+      - (?i).*secure.*
+      - (?i).*clientId.*
+
+bugsnag:
+  api:
+    key: abc123
+
+structured.logging.enabled: true
+
+# Enable health liveness and readiness
+management:
+  endpoint:
+    health:
+      probes:
+        enabled: true
+      livenessState:
+        enabled: true
+      readinessState:
+        enabled: true
+
+spring:
+  cache.type: redis
+  redis:
+    host: localhost
+    port: 6379
+
+  # disable the spring resource handler, for static resources
+  mvc:
+    # allowing to handle an exception when the request url do not match in any mapped route
+    throw-exception-if-no-handler-found: true
+  web:
+    resources:
+      # Necessary to allowing to handle an exception when the request url do not match in any mapped route
+      # this only works when we don't have any static resource for example some web site
+      add-mappings: false
+
+  # JACKSON configurations
+  jackson:
+    # default name strategy
+    property-naming-strategy: SNAKE_CASE
+    # ignore null properties in the serialization, similar to @JsonInclude(JsonInclude.Include.NON_NULL)
+    default-property-inclusion: non_null
+    deserialization:
+      # Throw an exception if a unknown propriety arrives in the request body, the default value is false
+      fail-on-unknown-properties: true
+      # throw an exception if a property annotated with @JsonIgnore arrives in the request body, the default value is false
+      fail-on-ignored-properties: true
+
+  data:
+    mongodb:
+      uri: mongodb://admin:admin@localhost:27017/admin
+      auto-index-creation: true
+    web:
+      pageable:
+        page-parameter: page
+        size-parameter: per_page
+        default-page-size: 50
+        one-indexed-parameters: true

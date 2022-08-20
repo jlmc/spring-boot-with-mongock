@@ -1,0 +1,49 @@
+version: '3.9'
+
+services:
+  mongodb:
+    image: mongo:4.4.5
+    restart: always
+    ports:
+      - "27017:27017"
+    volumes:
+      - .volumes/mongo/data:/data/db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: admin
+    healthcheck:
+      test: echo 'db.runCommand("ping").ok' | mongo localhost:27017/test --quiet
+      interval: 10s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
+    networks:
+      - demos
+
+  postgres:
+    image: postgres:13.3
+    restart: always
+    environment:
+      - "POSTGRES_USER=example"
+      - "POSTGRES_PASSWORD=example"
+      - "POSTGRES_DB=demo36"
+    command: postgres --max_prepared_transactions=100
+    ports:
+      - "5432:5432"
+    volumes:
+      - .volumes/postgres/pgdata:/var/lib/postgresql/data
+    networks:
+      - demos
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -d demo36 -U example"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+#    depends_on:
+#      postgres:
+#        condition: service_healthy
+
+
+networks:
+  demos:
+    driver: bridge
