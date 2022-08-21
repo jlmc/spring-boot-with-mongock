@@ -1,10 +1,10 @@
 package io.github.jlmc.mongodbschemamsg.interfaces.rest;
 
-import io.github.jlmc.mongodbschemamsg.domain.aggregates.Person;
-import io.github.jlmc.mongodbschemamsg.domain.commands.DeletePersonCommand;
 import io.github.jlmc.mongodbschemamsg.application.internal.commandservices.AddPersonCommandService;
 import io.github.jlmc.mongodbschemamsg.application.internal.commandservices.DeletePersonCommandService;
 import io.github.jlmc.mongodbschemamsg.application.internal.queryservices.PersonQueryService;
+import io.github.jlmc.mongodbschemamsg.domain.aggregates.Person;
+import io.github.jlmc.mongodbschemamsg.domain.commands.DeletePersonCommand;
 import io.github.jlmc.mongodbschemamsg.interfaces.rest.assemblers.PersonResourceAssembler;
 import io.github.jlmc.mongodbschemamsg.interfaces.rest.dtos.AddPersonRequestResource;
 import io.github.jlmc.mongodbschemamsg.interfaces.rest.dtos.PersonResource;

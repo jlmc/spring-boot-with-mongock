@@ -1,32 +1,27 @@
-package io.github.jlmc.mongodbschemamsg.domain.aggregates;
+package io.github.jlmc.mongodbschemamsg.domain.entities;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
-
-import java.time.Instant;
 
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-//@Accessors(chain = true)
-@Document(collection = "persons")
-public class Person {
+
+@Document(collection = "event-types")
+/*@CompoundIndexes(value = {
+        @CompoundIndex(name = "noDuplicatesIndex", def = "{'accountId' : 1, 'name': 1}")
+})*/
+public class EventType {
     @Id
     private String id;
     @Field("name")
-    @Indexed(unique = true, name = "person-name-unique")
+    @Indexed(unique = true)
     private String name;
-    @CreatedDate
-    private Instant created;
-    @LastModifiedDate
-    private Instant updated;
 }

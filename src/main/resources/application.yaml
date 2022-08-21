@@ -50,7 +50,8 @@ logging:
 
 mongock:
   enabled: true
-  change-logs-scan-package: io.github.jlmc.mongodbschemamsg.infrastructure.dbmigrations
+  #change-logs-scan-package: io.github.jlmc.mongodbschemamsg.infrastructure.dbmigrations
+  migration-scan-package: io.github.jlmc.mongodbschemamsg.infrastructure.dbmigrations
   index-creation: true
-  runner-type: ApplicationRunner
+  # runner-type: ApplicationRunner
   #transaction-enabled: true

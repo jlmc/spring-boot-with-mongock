@@ -9,7 +9,7 @@ public class Database001ChangeLog {
 
     @ChangeSet(order = "001", id = "add-person-updated-instant", author = "admin")
     public void addPersonUpdatedInstant(PersonRepository personRepository) {
-        personRepository.findAll().stream()
+        personRepository.findAll()
                         .forEach(person -> {
 
                             person.setUpdated(person.getCreated());
